@@ -12,17 +12,21 @@ void setup()
 void loop()
 {
   
-  while (digitalRead(12) == LOW && i <= 180) {
+  while (digitalRead(12) == LOW && i < 180) {
+    i = i + 10;
+
+    if (i >= 0 && i <= 180){
       servo_6.write(i);
-      i++;
-      delay(30);
+    }
+      delay(100);
     }
   
-  while (digitalRead(13) == LOW && i >= 0) {
-    servo_6.write(i);
-    i--;
-    delay(30);
+  while (digitalRead(13) == LOW && i > 0) {
+    i = i - 10;
+    if (i >= 0 && i <= 180){
+      servo_6.write(i);
+    }    
+    delay(100);
   }
   
-  delay(10); 
 }

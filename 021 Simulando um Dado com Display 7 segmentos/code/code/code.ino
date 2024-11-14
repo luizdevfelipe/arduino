@@ -10,6 +10,7 @@ void setup() {
   pinMode(7, OUTPUT);
 
   pinMode(3, INPUT);
+  pinMode(A0, INPUT);
 
   digitalWrite(13, HIGH);  // G
   digitalWrite(12, HIGH);  // F
@@ -21,13 +22,23 @@ void setup() {
 }
 
 void loop() {
+  int tempo = 50;
+  int cont = 0;
+  randomSeed(analogRead(A0));
+
   if (digitalRead(3) == LOW) {
-    for (int i = 0; i <= random(8, 20); i++) {
-      acende(random(1, 7));
-      delay(1000);
+    int aleatorio = random(25, 65);
+
+    for (int i = 0; i <= aleatorio; i++) {
+      acende(random(1, 10));
+      if (cont <= aleatorio && tempo <= 2000) {
+        cont++;
+        tempo = tempo + 10;
+      }
+      delay(tempo);
     }
   }
-  delay(10);  // Delay a little bit to improve simulation performance
+  delay(10);
 }
 
 void acende(int valor) {
@@ -88,6 +99,36 @@ void acende(int valor) {
     digitalWrite(10, LOW);  // D
     digitalWrite(9, LOW);   // C
     digitalWrite(8, HIGH);  // B
+    digitalWrite(7, LOW);   // A
+  }
+
+  if (valor == 7) {
+    digitalWrite(13, HIGH);  // G
+    digitalWrite(12, HIGH);  // F
+    digitalWrite(11, HIGH);  // E
+    digitalWrite(10, HIGH);  // D
+    digitalWrite(9, LOW);  // C
+    digitalWrite(8, LOW);  // B
+    digitalWrite(7, LOW);  // A
+  }
+
+  if (valor == 8) {
+    digitalWrite(13, LOW);  //G
+    digitalWrite(12, LOW);  // F
+    digitalWrite(11, LOW);  // E
+    digitalWrite(10, LOW);  // D
+    digitalWrite(9, LOW);   // C
+    digitalWrite(8, LOW);  // B
+    digitalWrite(7, LOW);   // A
+  }
+
+  if (valor == 9) {
+    digitalWrite(13, LOW);  // G
+    digitalWrite(12, LOW);  // F
+    digitalWrite(11, HIGH);  // E
+    digitalWrite(10, LOW);  // D
+    digitalWrite(9, LOW);   // C
+    digitalWrite(8, LOW);  // B
     digitalWrite(7, LOW);   // A
   }
 }
